@@ -46,43 +46,65 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: isMobile
           ? SafeArea(
+              top: false,
               child: Container(
-              //mobile layout (vertical)
-              child: Column(
-                children: [
-                  //hero banner
-                  Expanded(
-                    child: BannerWidget(
-                      isMobile: isMobile,
-                      showAll: _showAll,
+                //mobile layout (vertical)
+                child: Column(
+                  children: [
+                    //hero banner
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          AnimatedOpacity(
+                            opacity: _showAll ? 0.0 : 1.0,
+                            duration: const Duration(milliseconds: 500),
+                            child: BannerWidget(
+                              isMobile: isMobile,
+                              showAll: false,
+                            ),
+                          ),
+                          AnimatedOpacity(
+                            opacity: _showAll ? 1.0 : 0.0,
+                            duration: const Duration(milliseconds: 1500),
+                            child: BannerWidget(
+                              isMobile: isMobile,
+                              showAll: true,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  AnimatedOpacity(
-                    // If the widget is visible, animate to 0.0 (invisible).
-                    // If the widget is hidden, animate to 1.0 (fully visible).
-                    opacity: _showAll ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 500),
-                    // The green box must be a child of the AnimatedOpacity widget.
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      color: Colors.green,
-                    ),
-                  )
-                  //about
-                  //grid list gallery
-                  //skills
-                  //contact
-                ],
-              ),
-              //nav with floating action button https://docs.flutter.dev/cookbook/effects/expandable-fab
-            ))
+
+                    //about
+                    //grid list gallery
+                    //skills
+                    //contact
+                  ],
+                ),
+                //nav with floating action button https://docs.flutter.dev/cookbook/effects/expandable-fab
+              ))
           : Container(
               height: height,
               width: width,
-              child: BannerWidget(
-                isMobile: isMobile,
-                showAll: _showAll,
+              child: Stack(
+                children: [
+                  AnimatedOpacity(
+                    opacity: _showAll ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: BannerWidget(
+                      isMobile: isMobile,
+                      showAll: false,
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _showAll ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 1500),
+                    child: BannerWidget(
+                      isMobile: isMobile,
+                      showAll: true,
+                    ),
+                  ),
+                ],
               ),
             ),
 

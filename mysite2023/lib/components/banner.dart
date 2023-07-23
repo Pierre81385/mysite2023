@@ -27,76 +27,96 @@ class _BannerWidgetState extends State<BannerWidget> {
     _showAll = widget.showAll;
     return Scaffold(
       backgroundColor: _showAll ? Colors.white : Colors.black,
-      body: Column(
-        mainAxisAlignment: _showAll
-            ? MainAxisAlignment.spaceBetween
-            : MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Column(
-              children: [
-                Container(
-                  child: Text(
-                    "PJB",
-                    style: TextStyle(
-                        color: _showAll ? Colors.black : Colors.white,
-                        fontSize: 92,
-                        fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: _showAll
+              ? MainAxisAlignment.spaceBetween
+              : MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: Column(
+                children: [
+                  Container(
+                    child: Text(
+                      "PJB",
+                      style: TextStyle(
+                          color: _showAll ? Colors.black : Colors.white,
+                          fontSize: 92,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: _showAll ? Colors.black : Colors.white),
-                        child: Text(
-                          "PETER JOHN BISHOP",
-                          style: TextStyle(
-                              color: _showAll ? Colors.white : Colors.black),
+                  Text(
+                    "FULL STACK DEVELOPER",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: _showAll ? Colors.black : Colors.white,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: _showAll ? Colors.black : Colors.white),
+                          child: Text(
+                            "PETER JOHN BISHOP",
+                            style: TextStyle(
+                                color: _showAll ? Colors.white : Colors.black),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Text(
-                  "FULL STACK DEVELOPER",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: _showAll ? Colors.black : Colors.white,
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            AnimatedOpacity(
+                opacity: _showAll ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 2000),
+                child: Container(
+                    decoration: BoxDecoration(color: Colors.black),
+                    child: GalleryWidget(isMobile: _isMobile))),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: _showAll ? Colors.black : Colors.white),
+                    child: _showAll
+                        ? _isMobile
+                            ? AnimatedOpacity(
+                                opacity: _showAll ? 1.0 : 0.0,
+                                duration: const Duration(milliseconds: 2000),
+                                child: const Text(
+                                  "...and dad!",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.white),
+                                ),
+                              )
+                            : AnimatedOpacity(
+                                opacity: _showAll ? 1.0 : 0.0,
+                                duration: const Duration(milliseconds: 2000),
+                                child: const Text(
+                                  "flutter/dart mongodb expressjs reactjs nodejs aws[dynamodb, s3, ec2] firebase[auth, firestore, cloudstorage] RESTful_API html/css/javascript sql/mysql graphql axios sequelize OAUTH2 JWT iOS/xcode",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                ),
+                              )
+                        : _isMobile
+                            ? Text("[ mobile environment ]")
+                            : Text("[ desktop environment ]"),
                   ),
                 ),
               ],
             ),
-          ),
-          AnimatedOpacity(
-            opacity: _showAll ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 2000),
-            child: _isMobile
-                ? GalleryWidget(isMobile: _isMobile)
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AboutWidget(isMobile: _isMobile),
-                      GalleryWidget(isMobile: _isMobile),
-                      Text("widget here")
-                    ],
-                  ),
-          ),
-          _showAll
-              ? AnimatedOpacity(
-                  opacity: _showAll ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 2000),
-                  child: Text("isMobile " + _isMobile.toString()))
-              : const Text(
-                  "flutter/dart mongodb expressjs reactjs nodejs aws[dynamodb, s3, ec2] firebase[auth, firestore, cloudstorage] RESTful_API html/css/javascript sql/mysql graphql axios sequelize OAUTH2 JWT iOS/xcode",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                )
-        ],
+          ],
+        ),
       ),
     );
   }

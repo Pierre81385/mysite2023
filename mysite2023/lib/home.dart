@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   void periodicTimer() {
     Timer.periodic(
-      const Duration(seconds: 5),
+      const Duration(seconds: 3),
       (timer) {
         setState(() {
           _shouldStop = true;
@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
       body: isMobile
           ? SafeArea(
               top: false,
+              bottom: false,
               child: Container(
                 //mobile layout (vertical)
                 child: Column(

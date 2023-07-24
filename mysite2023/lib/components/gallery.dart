@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:mysite2023/components/gallery_data.dart';
 
 class GalleryWidget extends StatefulWidget {
@@ -22,6 +23,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
     return Center(
       child: SizedBox(
         height: _isMobile ? height * 0.7 : height * 0.7,

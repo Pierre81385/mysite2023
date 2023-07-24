@@ -15,14 +15,20 @@ class BannerWidget extends StatefulWidget {
 class _BannerWidgetState extends State<BannerWidget> {
   late bool _isMobile;
   late bool _showAll;
+  late bool _hover;
+  late bool _about;
 
   @override
   void initState() {
     super.initState();
+    _hover = false;
+    _about = false;
   }
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     _isMobile = widget.isMobile;
     _showAll = widget.showAll;
     return Scaffold(
@@ -37,13 +43,51 @@ class _BannerWidgetState extends State<BannerWidget> {
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Column(
                 children: [
-                  Container(
-                    child: Text(
-                      "PJB",
-                      style: TextStyle(
-                          color: _showAll ? Colors.black : Colors.white,
-                          fontSize: 92,
-                          fontWeight: FontWeight.bold),
+                  SizedBox(
+                    width: width,
+                    child: InkWell(
+                      splashColor: Colors.black,
+                      onTap: () {
+                        if (_about == false) {
+                          setState(() {
+                            _about = true;
+                          });
+                        }
+
+                        if (_about == true) {
+                          setState(() {
+                            _about == false;
+                          });
+                        }
+                      },
+                      onHover: (value) {
+                        setState(() {
+                          _hover = value;
+                        });
+                      },
+                      child: _about
+                          ? Text("About",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: _showAll
+                                      ? _hover
+                                          ? Colors.red
+                                          : Colors.black
+                                      : Colors.white,
+                                  fontSize: 92,
+                                  fontWeight: FontWeight.bold))
+                          : Text(
+                              "PJB",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: _showAll
+                                      ? _hover
+                                          ? Colors.red
+                                          : Colors.black
+                                      : Colors.white,
+                                  fontSize: 92,
+                                  fontWeight: FontWeight.bold),
+                            ),
                     ),
                   ),
                   Text(

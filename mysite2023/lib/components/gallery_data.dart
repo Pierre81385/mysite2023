@@ -22,5 +22,5 @@ const galleryContent = [
   {
     "name": "app5",
     "image": "lib/assets/oliver5.png",
-  }
+  },
 ];

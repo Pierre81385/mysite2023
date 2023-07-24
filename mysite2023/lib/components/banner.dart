@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mysite2023/components/about.dart';
 import 'package:mysite2023/components/gallery.dart';
+import 'package:mysite2023/components/splash.dart';
 
 class BannerWidget extends StatefulWidget {
   const BannerWidget(
@@ -15,14 +16,12 @@ class BannerWidget extends StatefulWidget {
 class _BannerWidgetState extends State<BannerWidget> {
   late bool _isMobile;
   late bool _showAll;
-  late bool _hover;
   late bool _about;
 
   @override
   void initState() {
-    super.initState();
-    _hover = false;
     _about = false;
+    super.initState();
   }
 
   @override
@@ -44,52 +43,28 @@ class _BannerWidgetState extends State<BannerWidget> {
               child: Column(
                 children: [
                   SizedBox(
-                    width: width,
-                    child: InkWell(
-                      splashColor: Colors.black,
-                      onTap: () {
-                        if (_about == false) {
+                      width: width,
+                      child: InkWell(
+                        splashColor: Colors.black,
+                        onTap: () {
                           setState(() {
-                            _about = true;
+                            _about = !_about;
                           });
-                        }
-
-                        if (_about == true) {
-                          setState(() {
-                            _about == false;
-                          });
-                        }
-                      },
-                      onHover: (value) {
-                        setState(() {
-                          _hover = value;
-                        });
-                      },
-                      child: _about
-                          ? Text("About",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  color: _showAll
-                                      ? _hover
-                                          ? Colors.red
-                                          : Colors.black
-                                      : Colors.white,
-                                  fontSize: 92,
-                                  fontWeight: FontWeight.bold))
-                          : Text(
-                              "PJB",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: _showAll
-                                      ? _hover
-                                          ? Colors.red
-                                          : Colors.black
-                                      : Colors.white,
-                                  fontSize: 92,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                    ),
-                  ),
+                        },
+                        child: Text(
+                          _about ? "About" : "PJB",
+                          textAlign:
+                              _about ? TextAlign.start : TextAlign.center,
+                          style: TextStyle(
+                              color: _showAll
+                                  ? _about
+                                      ? Colors.red
+                                      : Colors.black
+                                  : Colors.white,
+                              fontSize: 92,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )),
                   Text(
                     "FULL STACK DEVELOPER",
                     style: TextStyle(
@@ -117,12 +92,19 @@ class _BannerWidgetState extends State<BannerWidget> {
                 ],
               ),
             ),
-            AnimatedOpacity(
-                opacity: _showAll ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 2000),
-                child: Container(
-                    decoration: BoxDecoration(color: Colors.black),
-                    child: GalleryWidget(isMobile: _isMobile))),
+            _showAll
+                ? AnimatedOpacity(
+                    opacity: _showAll ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 2000),
+                    child: Container(
+                        decoration: BoxDecoration(color: Colors.black),
+                        child: GalleryWidget(isMobile: _isMobile)))
+                : Container(
+                    decoration: BoxDecoration(color: Colors.white),
+                    child: SplashWidget(
+                      isMobile: _isMobile,
+                    ),
+                  ),
             Row(
               children: [
                 Expanded(

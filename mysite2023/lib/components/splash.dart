@@ -22,7 +22,9 @@ class _SplashWidgetState extends State<SplashWidget> {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("lib/assets/me.png"),
+            image: _isMobile
+                ? const AssetImage("lib/assets/me.png")
+                : const AssetImage("lib/assets/me_splash.png"),
             fit: BoxFit.fitHeight,
           ),
         ),

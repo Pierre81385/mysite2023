@@ -92,26 +92,27 @@ class _BannerWidgetState extends State<BannerWidget> {
                 ],
               ),
             ),
-            _showAll
-                ? AnimatedOpacity(
-                    opacity: _showAll ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 2000),
-                    child: Container(
-                        decoration: BoxDecoration(color: Colors.black),
-                        child: GalleryWidget(isMobile: _isMobile)))
-                : Container(
-                    decoration: BoxDecoration(color: Colors.white),
+            _showAll == false
+                ? Container(
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: SplashWidget(
                       isMobile: _isMobile,
                     ),
-                  ),
+                  )
+                : AnimatedOpacity(
+                    opacity: _showAll ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 2000),
+                    child: Container(
+                        decoration: const BoxDecoration(color: Colors.black),
+                        child: _about
+                            ? AboutWidget(isMobile: _isMobile)
+                            : GalleryWidget(isMobile: _isMobile))),
             Row(
               children: [
                 Expanded(
                   child: Container(
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: _showAll ? Colors.black : Colors.white),
+                    decoration: const BoxDecoration(color: Colors.black),
                     child: _showAll
                         ? _isMobile
                             ? AnimatedOpacity(
@@ -131,12 +132,16 @@ class _BannerWidgetState extends State<BannerWidget> {
                                   "flutter/dart mongodb expressjs reactjs nodejs aws[dynamodb, s3, ec2] firebase[auth, firestore, cloudstorage] RESTful_API html/css/javascript sql/mysql graphql axios sequelize OAUTH2 JWT iOS/xcode",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: 14, color: Colors.grey),
+                                      fontSize: 14, color: Colors.white),
                                 ),
                               )
                         : _isMobile
-                            ? Text("[ mobile environment ]")
-                            : Text("[ desktop environment ]"),
+                            ? const Text(
+                                "Welcome to my mobile site.",
+                                style: TextStyle(color: Colors.white),
+                              )
+                            : const Text("Welcome to my desktop site.",
+                                style: TextStyle(color: Colors.white)),
                   ),
                 ),
               ],

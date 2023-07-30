@@ -43,7 +43,7 @@ const aboutContent = [
   },
   {
     "name": "app3",
-    "image": "lib/assets/oliver1.jpg",
+    "image": "lib/assets/oliver2.jpg",
   },
   {
     "name": "app4",

@@ -16,11 +16,17 @@ class BannerWidget extends StatefulWidget {
 class _BannerWidgetState extends State<BannerWidget> {
   late bool _isMobile;
   late bool _showAll;
+  late bool _hoverAbout;
   late bool _about;
+  late bool _hoverExperience;
+  late bool _experience;
 
   @override
   void initState() {
     _about = false;
+    _hoverAbout = false;
+    _experience = false;
+    _hoverExperience = false;
     super.initState();
   }
 
@@ -46,31 +52,59 @@ class _BannerWidgetState extends State<BannerWidget> {
                       width: width,
                       child: InkWell(
                         splashColor: Colors.black,
+                        onHover: (value) {
+                          setState(() {
+                            _hoverAbout = value;
+                          });
+                        },
                         onTap: () {
                           setState(() {
                             _about = !_about;
                           });
                         },
                         child: Text(
-                          _about ? "About" : "PJB",
+                          _hoverAbout
+                              ? "About"
+                              : _about
+                                  ? "About"
+                                  : "PJB",
                           textAlign:
                               _about ? TextAlign.start : TextAlign.center,
                           style: TextStyle(
-                              color: _showAll
-                                  ? _about
-                                      ? Colors.red
-                                      : Colors.black
-                                  : Colors.white,
-                              fontSize: 92,
-                              fontWeight: FontWeight.bold),
+                            color: _showAll ? Colors.black : Colors.white,
+                            fontSize: 92,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       )),
-                  Text(
-                    "FULL STACK DEVELOPER",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: _showAll ? Colors.black : Colors.white,
+                  SizedBox(
+                    width: width,
+                    child: InkWell(
+                      splashColor: Colors.black,
+                      onHover: (value) {
+                        setState(() {
+                          _hoverExperience = value;
+                        });
+                      },
+                      onTap: () {
+                        setState(() {
+                          _experience = !_experience;
+                        });
+                      },
+                      child: Text(
+                        _hoverExperience
+                            ? "Experience"
+                            : _experience
+                                ? "Experience"
+                                : "FULL STACK DEVELOPER",
+                        textAlign:
+                            _experience ? TextAlign.end : TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: _showAll ? Colors.black : Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                   Row(
@@ -83,7 +117,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                           child: Text(
                             "PETER JOHN BISHOP",
                             style: TextStyle(
-                                color: _showAll ? Colors.white : Colors.black),
+                                color: _showAll ? Colors.white : Colors.white),
                           ),
                         ),
                       ),
@@ -103,7 +137,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                     opacity: _showAll ? 1.0 : 0.0,
                     duration: const Duration(milliseconds: 2000),
                     child: Container(
-                        decoration: const BoxDecoration(color: Colors.black),
+                        decoration: const BoxDecoration(color: Colors.white),
                         child: _about
                             ? AboutWidget(isMobile: _isMobile)
                             : GalleryWidget(isMobile: _isMobile))),

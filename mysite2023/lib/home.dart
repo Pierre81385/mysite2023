@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   void periodicTimer() {
     Timer.periodic(
-      const Duration(seconds: 5),
+      const Duration(seconds: 3),
       (timer) {
         setState(() {
           _shouldStop = true;

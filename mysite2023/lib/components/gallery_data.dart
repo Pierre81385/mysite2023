@@ -1,11 +1,14 @@
 const galleryContent = [
   {
-    "name": "app0",
+    "stack": "React, Bootstrap",
     "image": "lib/assets/nightclub.gif",
+    "description": "This site is a demonstration of using react state"
   },
   {
-    "name": "app1",
+    "name": "Flutter & Dart, Google API, GTFS-RT",
     "image": "lib/assets/train1.gif",
+    "description":
+        "I recently found the need to find a way to quickly determine if my girlfriends train was close to arriving at our station every morning when I dropped her off.  And on her way home I wanted to know when she'd be arriving so I wasn't wasting time waiting for her if the train was running late. But the public site for this information was so slow to load and the UI was so cluttered you could barely see the map when it did!  So I created this to fill that need and out of a curiosity about how to consume GTFS-RT data feeds and how to use polyline data with Google Maps.  I quickly found there was loads of interesting information I could add to my app after exploring the various responses, and decided to add alert information, train stop locations, color coded routes.  This app is currently in testing through Apple TestFlight but I plan to submit it to the App Store soon so stay tuned!"
   },
   {
     "name": "app2",

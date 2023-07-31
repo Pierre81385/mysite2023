@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mysite2023/components/about.dart';
+import 'package:mysite2023/components/experience.dart';
 import 'package:mysite2023/components/gallery.dart';
 import 'package:mysite2023/components/splash.dart';
 
@@ -60,6 +61,9 @@ class _BannerWidgetState extends State<BannerWidget> {
                         onTap: () {
                           setState(() {
                             _about = !_about;
+                            if (_experience) {
+                              _experience = !_experience;
+                            }
                           });
                         },
                         child: Text(
@@ -67,9 +71,14 @@ class _BannerWidgetState extends State<BannerWidget> {
                               ? "About"
                               : _about
                                   ? "About"
-                                  : "PJB",
-                          textAlign:
-                              _about ? TextAlign.start : TextAlign.center,
+                                  : _experience
+                                      ? "PJB"
+                                      : "PJB",
+                          textAlign: _about
+                              ? TextAlign.start
+                              : _experience
+                                  ? TextAlign.center
+                                  : TextAlign.center,
                           style: TextStyle(
                             color: _showAll ? Colors.black : Colors.white,
                             fontSize: 92,
@@ -89,14 +98,19 @@ class _BannerWidgetState extends State<BannerWidget> {
                       onTap: () {
                         setState(() {
                           _experience = !_experience;
+                          if (_about) {
+                            _about = !_about;
+                          }
                         });
                       },
                       child: Text(
-                        _hoverExperience
-                            ? "Experience"
-                            : _experience
+                        _about
+                            ? "FULL STACK DEVELOPER"
+                            : _hoverExperience
                                 ? "Experience"
-                                : "FULL STACK DEVELOPER",
+                                : _experience
+                                    ? "Experience"
+                                    : "FULL STACK DEVELOPER",
                         textAlign:
                             _experience ? TextAlign.end : TextAlign.center,
                         style: TextStyle(
@@ -140,7 +154,9 @@ class _BannerWidgetState extends State<BannerWidget> {
                         decoration: const BoxDecoration(color: Colors.white),
                         child: _about
                             ? AboutWidget(isMobile: _isMobile)
-                            : GalleryWidget(isMobile: _isMobile))),
+                            : _experience
+                                ? ExperienceWidget(isMobile: _isMobile)
+                                : GalleryWidget(isMobile: _isMobile))),
             Row(
               children: [
                 Expanded(

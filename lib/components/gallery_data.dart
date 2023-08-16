@@ -90,3 +90,27 @@ const aboutContent = [
         "I started picking up bar and restaurant gigs just for fun and discovered I loved working in the industry, so I bartended and served for several years.  If you're from Denver, I worked at Mile High Spirits, Tap XIV/Hayters, The Pig & The Sprout, For[a]ged, Dimestore Deli bar, and Sushi Rama/Osaka Ramen.  I always started at the bottom but worked my way up to manage at Sushi Rama, went from food running to bartending at For[a]ged and The Pig & The Sprout, and held jobs in both bartending and production at Mile High Spirits.  I've you've had the Denver Dry Gin, I might have blended and bottled your batch!  I also gave educational tours of the distillery showing people how we transformed raw ingredients into a variety of spirits!"
   },
 ];
+
+const timeLineData = [
+  {
+    "date": "August 2023-Present",
+    "company": "ClickUp",
+    "position": "Junior Mobile App Developer",
+    "description":
+        "This position was created specifically for me after I expressed an interest in app development and demonstrated the technical knowlege of API's, the Flutter/Dart framework, Git, and scripting necessary to join this team. Additionally I continue to work in the Technical Support Specialist role 24-28h per week, and time for Mobile Development projects is contingent on my continued ability to meed and exceed Technical Support team metrics."
+  },
+  {
+    "date": "July 2023-Present",
+    "company": "ClickUp",
+    "position": "QA Engineer",
+    "description":
+        "Perform regression testing across multiple envirnonment instances of the product to confirm functionality or document and define defects through structured tests, using tools to monitor event triggers and other API requests/responses to ensure detailed accuracy. Developed scripts to automate testing and content creation, particularlly for large scale paywall testing. Prepare reports for and work with the Development teams to help identify the precise location and nature of defects encountered, and retest releases following a fix."
+  },
+  {
+    "date": "June 2022-Present",
+    "company": "ClickUp",
+    "position": "Technical Support Specialist/API Subject Matter Expert",
+    "description":
+        "Work with the Engineering and Development teams to quickly validate possible bugs though reproduction, Chrome DevTool analysis, DataDog log analysis, to provide concise and detailed reports to address confirmed defects. Validate and test the public API to help users and the Technical Support team develop workarounds for or confirm limitations of the ClickUp API as its used by users and integration partners. Designed bookmarklets to provide API functionality for common requests like finding and restoring elements in ClickUp through fetch requests. Developed a bookmarklet to find and replace text for external communications to conform with ClickUp Brand standards. Develop scripts to assist in automating various aspects of testing using API calls to generate test content or simulate API automation services like Make or Zapier.",
+  }
+];

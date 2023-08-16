@@ -158,6 +158,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "timeline_tile",
+      "rootUri": "file:///Users/peterbishop/.pub-cache/hosted/pub.dev/timeline_tile-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "url_launcher",
       "rootUri": "file:///Users/peterbishop/.pub-cache/hosted/pub.dev/url_launcher-6.1.12",
       "packageUri": "lib/",
@@ -218,7 +224,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-08-11T20:38:55.850596Z",
+  "generated": "2023-08-12T00:23:07.251005Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

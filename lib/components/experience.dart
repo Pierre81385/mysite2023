@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mysite2023/components/gallery_data.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class ExperienceWidget extends StatefulWidget {
   const ExperienceWidget({super.key, required this.isMobile});
@@ -39,64 +40,38 @@ class _ExperienceWidgetState extends State<ExperienceWidget> {
         child: ListView.builder(
             controller: _scrollViewController,
             scrollDirection: _isMobile ? Axis.vertical : Axis.horizontal,
-            itemCount: galleryContent.length,
+            itemCount: timeLineData.length,
             itemBuilder: (BuildContext context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FlipCard(
-                  fill: Fill
-                      .fillBack, // Fill the back side of the card to make in the same size as the front.
-                  direction: FlipDirection.HORIZONTAL, // default
-                  side: CardSide.FRONT, // The side to initially display.
-                  front: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
+              return TimelineTile(
+                axis:
+                    _isMobile ? TimelineAxis.vertical : TimelineAxis.horizontal,
+                isFirst: index == 0 ? true : false,
+                isLast: index == timeLineData.length - 1 ? true : false,
+                alignment:
+                    _isMobile ? TimelineAlign.manual : TimelineAlign.center,
+                lineXY: 0,
+                endChild: SizedBox(
+                  width: _isMobile ? width * 0.9 : width,
+                  height: _isMobile ? height * 0.7 : height * 0.7,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(timeLineData[index]["date"].toString()),
+                            Text(timeLineData[index]["company"].toString()),
+                            Text(timeLineData[index]["position"].toString()),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(timeLineData[index]["description"]
+                                  .toString()),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image(
-                        alignment: Alignment.center,
-                        image:
-                            AssetImage(aboutContent[index]["image"].toString()),
-                        height: _isMobile ? height * 0.6 : height * 0.5,
-                        width: _isMobile ? width * 0.9 : height * 0.5,
-                        fit: BoxFit.fitHeight,
                       ),
                     ),
-                  ),
-                  back: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: const Text('EXPERIENCE'),
                   ),
                 ),
               );
